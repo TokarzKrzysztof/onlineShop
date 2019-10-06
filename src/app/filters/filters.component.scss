@@ -1,0 +1,28 @@
+p{
+    color: grey;
+    text-align: right;
+    margin: 5px 5px 5px 0;
+    text-transform: uppercase;
+}
+h2{
+    text-align: left;
+    margin: 20px 0 20px 5px;
+}
+.filters div{
+    label{
+        display: block;
+        width: 100%;
+        margin: 5px 0 0 5px;
+        text-align: left;
+        input{
+            margin-right: 5px;
+        }
+    }
+}
+button{
+    padding: 5px 60px;
+    background-color: lightskyblue;
+    border-radius: 10px;
+    color: white;
+ 
+}

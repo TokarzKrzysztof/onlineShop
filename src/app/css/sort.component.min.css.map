@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "",
+    "sources": [
+        "../sort/sort.component.scss"
+    ],
+    "names": [],
+    "file": "sort.component.min.css"
+}

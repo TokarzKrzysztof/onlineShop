@@ -1,0 +1,10 @@
+<ul>
+    <li *ngFor='let item of items'>
+        <img [src]='item.photo' alt='item photo'>
+        <div class="description">
+            <p>{{item.name}}</p>
+            <p>{{item.price}}$</p>
+            <p>{{item.purchaseMethod}}</p>
+        </div>
+    </li>
+</ul>

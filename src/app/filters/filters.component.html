@@ -1,0 +1,21 @@
+<div class="filters">
+    <p>filters</p>
+    <div class="price">
+        <h2>By price</h2>
+        <form (change)='priceFilter($event)'>
+            <label><input type="radio" name="price" value='below100'>Below 100$</label>
+            <label><input type="radio" name="price" value='100-300'>100$-300$</label>
+            <label><input type="radio" name="price" value='300-600'>300$-600$</label>
+            <label><input type="radio" name="price" value='600-1000'>600$-1000$</label>
+            <label><input type="radio" name="price" value='over1000'>over 1000$</label>
+        </form>
+    </div>
+    <div class="purchaseMethod">
+        <h2>By purchase Method</h2>
+        <form (change)='purchaseMethodFilter($event)'>
+            <label><input type="radio" name="purchaseMethod" value='buyNow'>Buy now</label>
+            <label><input type="radio" name="purchaseMethod" value='auction'>Auction</label>
+        </form>
+    </div>
+    <button>Show</button>
+</div>
