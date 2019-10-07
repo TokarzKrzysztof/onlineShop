@@ -1,21 +1,25 @@
-<div class="filters">
-    <p>filters</p>
+<p (click)="showFilters()">filters</p>
+<div class="filters" *ngIf="active">
     <div class="price">
         <h2>By price</h2>
-        <form (change)='priceFilter($event)'>
-            <label><input type="radio" name="price" value='below100'>Below 100$</label>
-            <label><input type="radio" name="price" value='100-300'>100$-300$</label>
-            <label><input type="radio" name="price" value='300-600'>300$-600$</label>
-            <label><input type="radio" name="price" value='600-1000'>600$-1000$</label>
-            <label><input type="radio" name="price" value='over1000'>over 1000$</label>
+        <form (change)='filters($event)'>
+            <label><input type="radio" name="price" value='below100' [checked]='check'>Below 100$</label>
+            <label><input type="radio" name="price" value='100-300' [checked]='check'>100$-300$</label>
+            <label><input type="radio" name="price" value='300-600' [checked]='check'>300$-600$</label>
+            <label><input type="radio" name="price" value='600-1000' [checked]='check'>600$-1000$</label>
+            <label><input type="radio" name="price" value='over1000' [checked]='check'>over 1000$</label>
+            <label (input)='filters($event)'>From:<input type="number" name="first" [(ngModel)]='valueFrom'>$
+                To:<input type="number" name="second" [(ngModel)]='valueTo'>$</label>
         </form>
     </div>
     <div class="purchaseMethod">
         <h2>By purchase Method</h2>
-        <form (change)='purchaseMethodFilter($event)'>
-            <label><input type="radio" name="purchaseMethod" value='buyNow'>Buy now</label>
-            <label><input type="radio" name="purchaseMethod" value='auction'>Auction</label>
+        <form (change)='filters($event)'>
+            <label><input type="radio" name="purchaseMethod" value='buyNow' [checked]='check'>Buy now</label>
+            <label><input type="radio" name="purchaseMethod" value='auction' [checked]='check'>Auction</label>
         </form>
     </div>
-    <button>Show</button>
+    <button class='show' (click)='showFilteredArray()'>Show</button>
+    <br>
+    <button class='reset' (click)='reset()'>Reset</button>
 </div>

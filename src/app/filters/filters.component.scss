@@ -1,8 +1,8 @@
 p{
     color: grey;
-    text-align: right;
-    margin: 5px 5px 5px 0;
+    margin: 5px 5px 20px 0;
     text-transform: uppercase;
+    
 }
 h2{
     text-align: left;
@@ -16,13 +16,24 @@ h2{
         text-align: left;
         input{
             margin-right: 5px;
+            &[type="number"]{
+                margin-right: 0;
+                width: 80px;
+            }
         }
+        
     }
 }
 button{
     padding: 5px 60px;
-    background-color: lightskyblue;
     border-radius: 10px;
-    color: white;
- 
+    margin-bottom: 10px;
+    
+    &.show{
+        background-color: lightskyblue;
+        color: white;
+    }
+    &.reset{
+        background-color: lightgray;
+    }
 }
