@@ -12,9 +12,11 @@ export class FiltersComponent implements OnInit {
   items: Array<Item> = [];
   defaultItems: Array<Item> = [];
   showed: boolean;
-  check: boolean;
-  valueFrom: number;
-  valueTo: number;
+  check: boolean = true;
+  priceValueFrom: number;
+  priceValueTo: number;
+  priceFilterValue: string;
+  purchaseMethodFilterValue: string;
 
   constructor(private itemsService: ItemsService) {
     this.itemsService.getItems().subscribe((items: Array<Item>) => {
@@ -25,50 +27,59 @@ export class FiltersComponent implements OnInit {
   showFilters() {
     this.active = !this.active;
   }
-  filters(e) {
+  setPrice(e) {
+    this.priceFilterValue = e.target.value;
+  }
+  setPurchaseMethod(e) {
+    this.purchaseMethodFilterValue = e.target.value;
+  }
+  filter(price, purchaseMethod, valueFrom, valueTo) {
     this.showed = false;
-    if (e.target.type === 'radio') {
-      switch (e.target.value) {
-        case 'below100': this.items = this.defaultItems.filter(item => item.price < 100);
+    if (valueFrom > valueTo || valueFrom < 0 || valueTo < 0) {
+      window.alert('Please enter correct value!');
+      return;
+    }
+    if (valueFrom >= 0 && valueTo >= 0) {
+      this.items = this.items.filter(item => item.price >= valueFrom && item.price <= valueTo);
+    }
+    else if (price !== undefined) {
+      switch (price) {
+        case 'below100': this.items = this.items.filter(item => item.price < 100);
           break;
-        case '100-300': this.items = this.defaultItems.filter(item => item.price >= 100 && item.price <= 300);
+        case '100-300': this.items = this.items.filter(item => item.price >= 100 && item.price <= 300);
           break;
-        case '300-600': this.items = this.defaultItems.filter(item => item.price >= 300 && item.price <= 600);
+        case '300-600': this.items = this.items.filter(item => item.price >= 300 && item.price <= 600);
           break;
-        case '600-1000': this.items = this.defaultItems.filter(item => item.price >= 600 && item.price <= 1000);
+        case '600-1000': this.items = this.items.filter(item => item.price >= 600 && item.price <= 1000);
           break;
-        case 'over1000': this.items = this.defaultItems.filter(item => item.price > 1000);
-          break;
-        case 'buyNow': this.items = this.defaultItems.filter(item => item.purchaseMethod === 'Buy now');
-          break;
-        case 'auction': this.items = this.defaultItems.filter(item => item.purchaseMethod === 'Auction');
+        case 'over1000': this.items = this.items.filter(item => item.price > 1000);
           break;
       }
-    } else {
-      if (this.valueFrom >= 0 && this.valueTo >= 0) {
-        this.items = this.defaultItems.filter(item => item.price >= this.valueFrom && item.price <= this.valueTo);
+    }
+    if (purchaseMethod !== undefined) {
+      switch (purchaseMethod) {
+        case 'buyNow': this.items = this.items.filter(item => item.purchaseMethod === 'Buy now');
+          break;
+        case 'auction': this.items = this.items.filter(item => item.purchaseMethod === 'Auction');
+          break;
       }
     }
   }
   showFilteredArray() {
-    if (!this.showed) {
-      this.itemsService.actualizeItems(this.items);
+    if (this.priceFilterValue || this.purchaseMethodFilterValue || this.priceValueFrom || this.priceValueTo) {
+      this.filter(this.priceFilterValue, this.purchaseMethodFilterValue, this.priceValueFrom, this.priceValueTo);
+      this.reset(this.items);
       this.items = [...this.defaultItems];
-      this.showed = true;
-      this.check = false;
-      this.valueFrom = undefined;
-      this.valueTo = undefined;
-      setTimeout(() => {
-        // check value must be changed to update template
-        this.check = undefined;
-      }, 100);
     }
+
   }
-  reset() {
-    this.itemsService.actualizeItems(this.defaultItems);
-    this.check = false;
-    this.valueFrom = undefined;
-    this.valueTo = undefined;
+  reset(arr = this.defaultItems) {
+    this.itemsService.setItems(arr);
+    this.priceValueFrom = undefined;
+    this.priceValueTo = undefined;
+    this.priceFilterValue = undefined;
+    this.purchaseMethodFilterValue = undefined;
+    this.active = !this.active;
   }
   ngOnInit() {
   }
