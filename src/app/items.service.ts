@@ -14,14 +14,14 @@ export class ItemsService {
   constructor(private http: HttpClient) {
     this.test = this.http.get('https://jsonplaceholder.typicode.com/posts');
     this.items = [
-      { photo: '../../assets/img/bicycle.jpg', name: 'Bicycle', price: 200, purchaseMethod: 'Buy now' },
-      { photo: '../../assets/img/tv.jpg', name: 'TV', price: 1000, purchaseMethod: 'Buy now' },
-      { photo: '../../assets/img/laptop.jpg', name: 'Laptop', price: 1500, purchaseMethod: 'Auction' },
-      { photo: '../../assets/img/iPhone.jpg', name: 'iPhone', price: 900, purchaseMethod: 'Buy now' },
-      { photo: '../../assets/img/glasses.jpg', name: 'Glasses', price: 300, purchaseMethod: 'Buy now' },
-      { photo: '../../assets/img/suit.jpg', name: 'Suit', price: 1100, purchaseMethod: 'Buy now' },
-      { photo: '../../assets/img/book.jpg', name: 'Book', price: 50, purchaseMethod: 'Auction' },
-      { photo: '../../assets/img/plush.jpg', name: 'Plush', price: 10, purchaseMethod: 'Buy now' },
+      { photo: '../assets/img/bicycle.jpg', name: 'Bicycle', price: 200, purchaseMethod: 'Buy now' },
+      { photo: '../assets/img/tv.jpg', name: 'TV', price: 1000, purchaseMethod: 'Buy now' },
+      { photo: '../assets/img/laptop.jpg', name: 'Laptop', price: 1500, purchaseMethod: 'Auction' },
+      { photo: '../assets/img/iPhone.jpg', name: 'iPhone', price: 900, purchaseMethod: 'Buy now' },
+      { photo: '../assets/img/glasses.jpg', name: 'Glasses', price: 300, purchaseMethod: 'Buy now' },
+      { photo: '../assets/img/suit.jpg', name: 'Suit', price: 1100, purchaseMethod: 'Buy now' },
+      { photo: '../assets/img/book.jpg', name: 'Book', price: 50, purchaseMethod: 'Auction' },
+      { photo: '../assets/img/plush.jpg', name: 'Plush', price: 10, purchaseMethod: 'Buy now' },
     ];
     this.itemsArray.next(this.items);
   }
